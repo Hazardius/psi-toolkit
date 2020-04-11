@@ -70,7 +70,7 @@ Annotator* Iayko::Factory::doCreateAnnotator(
     std::string saveFar= options["save-far"].as<std::string>();
     std::string exceptionsFileSpec = options["exceptions"].as<std::string>();
     std::string inTag = options["in-tag"].as<std::string>();
-    std::string version = options["version"].as<std::string>();
+    std::string rev = options["rev"].as<std::string>();
 
     std::vector<std::string> exceptions;
     if (options.count("bypass-exceptions")) {
@@ -102,14 +102,14 @@ Annotator* Iayko::Factory::doCreateAnnotator(
         throw PsiException("Options --far and --md must not be used together");
     }
 
-    if (version == "2018") {
+    if (rev == "2018") {
         if (farFileSpec == DEFAULT_FAR_PATH) {
             farFileSpec = FAR_2018_PATH;
         }
         if (fstsFileSpec == DEFAULT_FSTS_PATH) {
             fstsFileSpec = FSTS_2018_PATH;
         }
-    } else if (version == "2020") {
+    } else if (rev == "2020") {
         if (farFileSpec == DEFAULT_FAR_PATH) {
             farFileSpec = FAR_2020_PATH;
         }
@@ -271,9 +271,9 @@ void Iayko::Factory::doAddLanguageIndependentOptionsHandled(
     ("in-tag", boost::program_options::value<std::string>()
         ->default_value(DEFAULT_IN_TAG),
         "tag to operate on")
-    ("version", boost::program_options::value<std::string>()
+    ("rev", boost::program_options::value<std::string>()
         ->default_value("2017"),
-        "rules version (2017/2018/2020)")
+        "rules version/revision (2017/2018/2020)")
     ;
 }
 
