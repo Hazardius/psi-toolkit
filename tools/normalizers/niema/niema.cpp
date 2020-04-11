@@ -27,6 +27,18 @@ const std::string Niema::Factory::DEFAULT_CONDITIONS_PATH
 const std::string Niema::Factory::DEFAULT_EXCEPTIONS_PATH
     = "%ITSDATA%/%LANG%/exceptions.lst";
 
+const std::string Niema::Factory::FAR_2018_PATH
+    = "%ITSDATA%/%LANG%/rules_2018.far";
+
+const std::string Niema::Factory::CONDITIONS_2018_PATH
+    = "%ITSDATA%/%LANG%/conditions_2018.txt";
+
+const std::string Niema::Factory::FAR_2020_PATH
+    = "%ITSDATA%/%LANG%/rules_2020.far";
+
+const std::string Niema::Factory::CONDITIONS_2020_PATH
+    = "%ITSDATA%/%LANG%/conditions_2020.txt";
+
 const std::list<std::string> Niema::requiredTags = boost::assign::list_of
         ("iayko");
 
@@ -60,6 +72,7 @@ Annotator* Niema::Factory::doCreateAnnotator(
     std::string saveFar = options["save-far"].as<std::string>();
     std::string saveConditions = options["save-conditions"].as<std::string>();
     std::string exceptionsFileSpec = options["exceptions"].as<std::string>();
+    std::string version = options["version"].as<std::string>();
 
     std::vector<std::string> exceptions;
     if (options.count("bypass-exceptions")) {
@@ -89,6 +102,22 @@ Annotator* Niema::Factory::doCreateAnnotator(
 
     if (farFileSpec != DEFAULT_FAR_PATH && !md.empty()) {
         throw PsiException("Options --far and --md must not be used together");
+    }
+
+    if (version == "2018") {
+        if (farFileSpec == DEFAULT_FAR_PATH) {
+            farFileSpec = FAR_2018_PATH;
+        }
+        if (conditionsFileSpec == DEFAULT_CONDITIONS_PATH) {
+            conditionsFileSpec = CONDITIONS_2018_PATH;
+        }
+    } else if (version == "2020") {
+        if (farFileSpec == DEFAULT_FAR_PATH) {
+            farFileSpec = FAR_2020_PATH;
+        }
+        if (conditionsFileSpec == DEFAULT_CONDITIONS_PATH) {
+            conditionsFileSpec = CONDITIONS_2020_PATH;
+        }
     }
 
     if (!grm.empty() && !md.empty()) {
@@ -297,6 +326,9 @@ void Niema::Factory::doAddLanguageIndependentOptionsHandled(
         boost::program_options::value<std::string>()
         ->default_value(DEFAULT_EXCEPTIONS_PATH),
         "a text file with list of exceptions")
+    ("version", boost::program_options::value<std::string>()
+        ->default_value("2017"),
+        "rules version (2017/2018/2020)")
     ;
 }
 

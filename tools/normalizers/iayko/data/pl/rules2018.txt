@@ -11,14 +11,11 @@ Rule1830
 Rule1832_A
 Rule1840
 Rule1816_03
-Rule1816_04
 Rule1816_05
-Rule1792
 Rule1830_01
 Rule1830_02
 Rule1830_03
 Rule1838
-Rule1936_A
 Rule1889
 Rule1891
 Rule1896_A
@@ -31,7 +28,6 @@ Rule1910
 Rule1903
 Rule1915
 Rule1936_B
-Rule1796
 Rule1929
 Rule1939_A
 Rule1939_B
@@ -44,7 +40,6 @@ Rule1865
 Rule1873
 Rule1931
 Rule1948
-Rule1859
 Rule1860
 Rule1896_B
 Rule1918
@@ -54,8 +49,6 @@ Rule2018_01
 Rule2018_02
 Rule2018_03
 Rule2018_04
-Rule2018_05
-Rule2018_06
 PostRuleFixY
 PostRuleFixI
 PostRuleFixJ

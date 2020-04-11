@@ -56,6 +56,10 @@ public:
         static const std::string AUXILLIARY_GRM_PATH;
         static const std::string DEFAULT_FAR_PATH;
         static const std::string DEFAULT_FSTS_PATH;
+        static const std::string FAR_2018_PATH;
+        static const std::string FSTS_2018_PATH;
+        static const std::string FAR_2020_PATH;
+        static const std::string FSTS_2020_PATH;
         static const std::string DEFAULT_EXCEPTIONS_PATH;
         static const std::string DEFAULT_IN_TAG;
     };

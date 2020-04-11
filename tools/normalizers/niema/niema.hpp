@@ -58,6 +58,10 @@ public:
         static const std::string DEFAULT_FAR_PATH;
         static const std::string DEFAULT_CONDITIONS_PATH;
         static const std::string DEFAULT_EXCEPTIONS_PATH;
+        static const std::string FAR_2018_PATH;
+        static const std::string CONDITIONS_2018_PATH;
+        static const std::string FAR_2020_PATH;
+        static const std::string CONDITIONS_2020_PATH;
     };
 
     Niema(const std::string& langCode,

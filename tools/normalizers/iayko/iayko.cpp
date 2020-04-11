@@ -23,6 +23,18 @@ const std::string Iayko::Factory::DEFAULT_FAR_PATH
 const std::string Iayko::Factory::DEFAULT_FSTS_PATH
     = "%ITSDATA%/%LANG%/rules.txt";
 
+const std::string Iayko::Factory::FAR_2018_PATH
+    = "%ITSDATA%/%LANG%/rules2018.far";
+
+const std::string Iayko::Factory::FSTS_2018_PATH
+    = "%ITSDATA%/%LANG%/rules2018.txt";
+
+const std::string Iayko::Factory::FAR_2020_PATH
+    = "%ITSDATA%/%LANG%/rules2020.far";
+
+const std::string Iayko::Factory::FSTS_2020_PATH
+    = "%ITSDATA%/%LANG%/rules2020.txt";
+
 const std::string Iayko::Factory::DEFAULT_EXCEPTIONS_PATH
     = "%ITSDATA%/%LANG%/exceptions.lst";
 
@@ -58,6 +70,7 @@ Annotator* Iayko::Factory::doCreateAnnotator(
     std::string saveFar= options["save-far"].as<std::string>();
     std::string exceptionsFileSpec = options["exceptions"].as<std::string>();
     std::string inTag = options["in-tag"].as<std::string>();
+    std::string version = options["version"].as<std::string>();
 
     std::vector<std::string> exceptions;
     if (options.count("bypass-exceptions")) {
@@ -87,6 +100,22 @@ Annotator* Iayko::Factory::doCreateAnnotator(
 
     if (farFileSpec != DEFAULT_FAR_PATH && !md.empty()) {
         throw PsiException("Options --far and --md must not be used together");
+    }
+
+    if (version == "2018") {
+        if (farFileSpec == DEFAULT_FAR_PATH) {
+            farFileSpec = FAR_2018_PATH;
+        }
+        if (fstsFileSpec == DEFAULT_FSTS_PATH) {
+            fstsFileSpec = FSTS_2018_PATH;
+        }
+    } else if (version == "2020") {
+        if (farFileSpec == DEFAULT_FAR_PATH) {
+            farFileSpec = FAR_2020_PATH;
+        }
+        if (fstsFileSpec == DEFAULT_FSTS_PATH) {
+            fstsFileSpec = FSTS_2020_PATH;
+        }
     }
 
     if (!grm.empty() && !md.empty()) {
@@ -242,6 +271,9 @@ void Iayko::Factory::doAddLanguageIndependentOptionsHandled(
     ("in-tag", boost::program_options::value<std::string>()
         ->default_value(DEFAULT_IN_TAG),
         "tag to operate on")
+    ("version", boost::program_options::value<std::string>()
+        ->default_value("2017"),
+        "rules version (2017/2018/2020)")
     ;
 }
 

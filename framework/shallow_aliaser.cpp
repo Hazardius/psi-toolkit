@@ -66,6 +66,18 @@ std::map<std::string, std::string> ShallowAliaser::ALIASES =
             " niema ! morfologik --token-tag niema !"
             " selector --fallback-tag \"iayko;morfologik\" !"
             " simple-writer --tags selected --fallback-tags token --sep \"\" --with-blank --no-alts")
+        ("diachronizer-2018", "morfologik !"
+            " antiselector --in-tag morfologik --out-tags !pl,tonorm !"
+            " iayko --version 2018 --in-tag tonorm !"
+            " niema --version 2018 ! morfologik --token-tag niema !"
+            " selector --fallback-tag \"iayko;morfologik\" !"
+            " simple-writer --tags selected --fallback-tags token --sep \"\" --with-blank --no-alts")
+        ("diachronizer-2020", "morfologik !"
+            " antiselector --in-tag morfologik --out-tags !pl,tonorm !"
+            " iayko --version 2020 --in-tag tonorm !"
+            " niema --version 2020 ! morfologik --token-tag niema !"
+            " selector --fallback-tag \"iayko;morfologik\" !"
+            " simple-writer --tags selected --fallback-tags token --sep \"\" --with-blank --no-alts")
         ;
 
 
